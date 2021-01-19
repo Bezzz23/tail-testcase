@@ -1,22 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
+import Toggle from './components/Toggle'
+import Slider from './components/Slider'
+import cx from 'classnames';
 import './App.css';
 
 function App() {
+  const [isNightTheme, setIsNightTheme] = useState(false);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <div className={cx("inline-flex items-center p-10 rounded-2xl", {
+                'bg-gray-900': isNightTheme,
+                'bg-transparent': !isNightTheme,
+              })}
+            >
+          <Toggle onChange={(val) => setIsNightTheme(val)}/>
+          <Slider isNightTheme={isNightTheme}/>
+        </div>
       </header>
     </div>
   );
